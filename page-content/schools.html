@@ -2,14 +2,15 @@
 
 
 <!-- add a select control to let users choose a school category;  you can hard-code the options or dynamically populate them from the primaryCategories variable below-->
-
-
+<form>
 <button id="searchSchools" class="mdc-button mdc-button--raised">
   <div class="mdc-button__ripple"></div>
   <i class="material-icons mdc-button__icon" aria-hidden="true">search</i>
   <span class="mdc-button__label">Search</span>
 </button>
 
+<input type="text" name = "filter">
+</form>
 
 <div id="resultCount" class="mdc-typography--body1">
 
@@ -37,6 +38,8 @@
 
   let limit = 50;
 
+  let filter = 
+
 
 
   $("button#searchSchools").off("click");
@@ -57,7 +60,7 @@
       $.each(response, (i,v) => {
         // clone template
         let clone = $("ul#listSchools .mdc-list-item.template").clone();
-
+        let 
         let dividerClone = divider.clone();
 
         // remove template class
