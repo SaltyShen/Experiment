@@ -14,7 +14,7 @@
     <style>
       body {margin: 0;}
       :root {
-        --mdc-theme-primary: #001E62;
+        --mdc-theme-primary:red;
       }
       .template {display:none;}
       .mdc-dialog__container {margin:5px;}
@@ -52,7 +52,7 @@
   <div class="mdc-top-app-bar__row">
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
       <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
-      <span class="mdc-top-app-bar__title">Your UIN Here </span>
+      <span class="mdc-top-app-bar__title">657964726 </span>
     </section>
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
     </section>
@@ -232,7 +232,37 @@
           center: {lat: -34.397, lng: 150.644},
           zoom: 8
         });
+        infoWindow = new google.maps.InfoWindow;
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            infoWindow.open(map);
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
       }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+    </script>
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCIK4Z-9uO_KmcNAexRKsIpCZrgI-I5aA&callback=initMap"
     async defer></script>
