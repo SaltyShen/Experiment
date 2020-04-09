@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class App extends React.Component{
+            //State is exactly how it sounds. It is the state of the component.
+            state ={
+                name: "Shen",
+                num: 24
+            }
+
+            //After State you can write javascript function
+            handleClick(e){
+                alert("UwU");
+            }
+            handleMouseOver(e){
+                alert("*Reveals trap card*");
+            }
+            handleCopy(e){
+                alert("STOP RIGHT THERE CRIMINAL SCUM. YOU HAVE VIOLATED THE LAW.");
+            }
+            // sets the states name.
+            handleChange = (e) => {
+                this.setState({
+                    name: e.target.value
+                })
+            }
+            //Default Nature is to refresh the page. This blocks it.
+            handleSubmit = (e) => {
+                e.preventDefault();
+                alert("Form submitted, " + this.state.name);
+            }
+
+            //On render, you generate HTML elements.
+            render(){
+                return(
+                    <div className="app-content">
+                    {/*General declaration*/}
+                    <h1>Hello World!</h1>
+
+                    {/*Dynamic state call */}
+                    <p>My Name is  {this.state.name} and my number is {this.state.num}</p>
+
+                    {/*onClick*/}
+                    <button id="clickButton" onClick={this.handleClick}> Hello..?</button>
+                    
+                    {/*mouseOver*/}
+                    <button id="mouseoverbutton" onMouseOver={this.handleMouseOver}> Hover Here </button>
+                    
+                    {/*onCopy*/}
+                    <p onCopy={this.handleCopy}> Here is some text. Don't copy me.</p>
+
+                    {/*forms*/}
+                    <form onSubmit={this.handleSubmit}>
+                        <input type="text" placeholder="Jeff" onChange={this.handleChange} />
+                        <button>Submit</button>
+                    </form>
+
+                    </div>
+                )
+            }
+        }
+    ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+</body>
+</html>
